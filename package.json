@@ -1,0 +1,23 @@
+{
+  "name": "intercom-interview",
+  "version": "1.0.0",
+  "description": "Invite any customer within 100km of our Dublin office for some food and drinks on us",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "tests": "node tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/THook/inviter.git"
+  },
+  "author": "Hugo Villain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/THook/inviter/issues"
+  },
+  "homepage": "https://github.com/THook/inviter#readme"
+}
