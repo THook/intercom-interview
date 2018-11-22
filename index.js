@@ -6,17 +6,19 @@ const customerStore = createCustomerStore();
 
 const customersOrderedById = customerStore.getCustomers((a, b) => a.user_id < b.user_id ? -1 : 1);
 
-const filteredCustomers = customersOrderedById.filter(customer => {
-  const customerCoordinates = {
-    latitude: customer.latitude,
-    longitude: customer.longitude,
-  };
-  const distanceInKms = getDistanceFromCoordinates(DUBLIN_OFFICE_COORDINATES, customerCoordinates);
-  if (distanceInKms <= MAX_DISTANCE_TO_INVITE) {
-    return true;
-  }
-  return false;
-});
+const filteredCustomers = ((customers, locationCoordinates, maxDistance) => {
+  return customers.filter(customer => {
+    const customerCoordinates = {
+      latitude: customer.latitude,
+      longitude: customer.longitude,
+    };
+    const distanceInKms = getDistanceFromCoordinates(locationCoordinates, customerCoordinates);
+    if (distanceInKms <= maxDistance) {
+      return true;
+    }
+    return false;
+  })
+})(customersOrderedById, DUBLIN_OFFICE_COORDINATES, MAX_DISTANCE_TO_INVITE);
 
 filteredCustomers.forEach(customer => {
   console.log(`${customer.name}, user_id: ${customer.user_id}`);
