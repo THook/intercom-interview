@@ -12,12 +12,8 @@ const filteredCustomers = ((customers, locationCoordinates, maxDistance) => {
       latitude: customer.latitude,
       longitude: customer.longitude,
     };
-    const distanceInKms = getDistanceFromCoordinates(locationCoordinates, customerCoordinates);
-    if (distanceInKms <= maxDistance) {
-      return true;
-    }
-    return false;
-  })
+    return getDistanceFromCoordinates(locationCoordinates, customerCoordinates) <= maxDistance;
+  });
 })(customersOrderedById, DUBLIN_OFFICE_COORDINATES, MAX_DISTANCE_TO_INVITE);
 
 filteredCustomers.forEach(customer => {
