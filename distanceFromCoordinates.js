@@ -14,13 +14,13 @@ const getDistanceFromCoordinatesInKm = (coordinates, coordinates2) => {
   const { latitude: lat1, longitude: lon1 } = coordinates;
   const { latitude: lat2, longitude: lon2 } = coordinates2;
 
-  const latInDegrees = convertDegreesToRadian(lat2 - lat1);
-  const longInDegrees = convertDegreesToRadian(lon2 - lon1);
+  const lat = convertDegreesToRadian(lat2 - lat1);
+  const long = convertDegreesToRadian(lon2 - lon1);
   const a =
-    Math.sin(latInDegrees / 2) * Math.sin(latInDegrees / 2) +
+    Math.sin(lat / 2) * Math.sin(lat / 2) +
     Math.cos(convertDegreesToRadian(lat1)) *
     Math.cos(convertDegreesToRadian(lat2)) *
-    Math.sin(longInDegrees / 2) * Math.sin(longInDegrees / 2)
+    Math.sin(long / 2) * Math.sin(long / 2)
     ;
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
